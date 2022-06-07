@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BDKRModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="BuyerId" />
+          </Key>
+          <Property Name="BuyerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassportId" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="MiddleName" Type="nchar" MaxLength="20" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="CardNumber" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adress" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="WebSite" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="MiddleName" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="IvoiceId" />
+          </Key>
+          <Property Name="IvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SypplyId" Type="int" Nullable="false" />
+          <Property Name="DdateInvoice" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoicePosition">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CountProduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderBuyer">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerId" Type="int" Nullable="false" />
+          <Property Name="OrderCost" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CostWitchDiscond" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportID" />
+          </Key>
+          <Property Name="PassportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Serial" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="DateOfIssue" Type="date" Nullable="false" />
+          <Property Name="IssuedByWhom" Type="nchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PositionOrderBuyer">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CountProduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="PostName" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleNumber" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="500" />
+          <Property Name="PricePerUnit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoregeRoom">
+          <Key>
+            <PropertyRef Name="StorageRoomId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="StorageRoomId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="CountProduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sypply">
+          <Key>
+            <PropertyRef Name="SupplyId" />
+          </Key>
+          <Property Name="SupplyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="DateSypply" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SypplyPosition">
+          <Key>
+            <PropertyRef Name="SypplyId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="SypplyId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CountProduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Buyer_Buyer">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportID" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="PassportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Sypply">
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sypply">
+              <PropertyRef Name="SupplyId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SypplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePosition_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="InvoicePosition" Type="Self.InvoicePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="IvoiceId" />
+            </Principal>
+            <Dependent Role="InvoicePosition">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePosition_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="InvoicePosition" Type="Self.InvoicePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="InvoicePosition">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderBuyer_Buyer">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="OrderBuyer" Type="Self.OrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="BuyerId" />
+            </Principal>
+            <Dependent Role="OrderBuyer">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionOrderBuyer_OrderBuyer">
+          <End Role="OrderBuyer" Type="Self.OrderBuyer" Multiplicity="1" />
+          <End Role="PositionOrderBuyer" Type="Self.PositionOrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderBuyer">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PositionOrderBuyer">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionOrderBuyer_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PositionOrderBuyer" Type="Self.PositionOrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PositionOrderBuyer">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoregeRoom_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="StoregeRoom" Type="Self.StoregeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="StoregeRoom">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoregeRoom_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="StoregeRoom" Type="Self.StoregeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="StoregeRoom">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sypply_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Sypply">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SypplyPosition_Product">
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="1" />
+          <End Role="SypplyPosition" Type="Self.SypplyPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sypply">
+              <PropertyRef Name="SupplyId" />
+            </Principal>
+            <Dependent Role="SypplyPosition">
+              <PropertyRef Name="SypplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SypplyPosition_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SypplyPosition" Type="Self.SypplyPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="SypplyPosition">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BDKRModelContainer">
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoicePosition" EntityType="Self.InvoicePosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderBuyer" EntityType="Self.OrderBuyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PositionOrderBuyer" EntityType="Self.PositionOrderBuyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoregeRoom" EntityType="Self.StoregeRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sypply" EntityType="Self.Sypply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SypplyPosition" EntityType="Self.SypplyPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Buyer_Buyer" Association="Self.FK_Buyer_Buyer">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Buyer" EntitySet="Buyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Sypply" Association="Self.FK_Invoice_Sypply">
+            <End Role="Sypply" EntitySet="Sypply" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePosition_Invoice" Association="Self.FK_InvoicePosition_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoicePosition" EntitySet="InvoicePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePosition_Product" Association="Self.FK_InvoicePosition_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="InvoicePosition" EntitySet="InvoicePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderBuyer_Buyer" Association="Self.FK_OrderBuyer_Buyer">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="OrderBuyer" EntitySet="OrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionOrderBuyer_OrderBuyer" Association="Self.FK_PositionOrderBuyer_OrderBuyer">
+            <End Role="OrderBuyer" EntitySet="OrderBuyer" />
+            <End Role="PositionOrderBuyer" EntitySet="PositionOrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionOrderBuyer_Product" Association="Self.FK_PositionOrderBuyer_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PositionOrderBuyer" EntitySet="PositionOrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_Company" Association="Self.FK_Post_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoregeRoom_Company" Association="Self.FK_StoregeRoom_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="StoregeRoom" EntitySet="StoregeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoregeRoom_Product" Association="Self.FK_StoregeRoom_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="StoregeRoom" EntitySet="StoregeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sypply_Employee" Association="Self.FK_Sypply_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Sypply" EntitySet="Sypply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SypplyPosition_Product" Association="Self.FK_SypplyPosition_Product">
+            <End Role="Sypply" EntitySet="Sypply" />
+            <End Role="SypplyPosition" EntitySet="SypplyPosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SypplyPosition_Product1" Association="Self.FK_SypplyPosition_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SypplyPosition" EntitySet="SypplyPosition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDKRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="BuyerId" />
+          </Key>
+          <Property Name="BuyerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassportId" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Passport" Relationship="Self.FK_Buyer_Buyer" FromRole="Buyer" ToRole="Passport" />
+          <NavigationProperty Name="OrderBuyer" Relationship="Self.FK_OrderBuyer_Buyer" FromRole="Buyer" ToRole="OrderBuyer" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adress" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Post_Company" FromRole="Company" ToRole="Post" />
+          <NavigationProperty Name="StoregeRoom" Relationship="Self.FK_StoregeRoom_Company" FromRole="Company" ToRole="StoregeRoom" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+          <NavigationProperty Name="Sypply" Relationship="Self.FK_Sypply_Employee" FromRole="Employee" ToRole="Sypply" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="IvoiceId" />
+          </Key>
+          <Property Name="IvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SypplyId" Type="Int32" Nullable="false" />
+          <Property Name="DdateInvoice" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Sypply" Relationship="Self.FK_Invoice_Sypply" FromRole="Invoice" ToRole="Sypply" />
+          <NavigationProperty Name="InvoicePosition" Relationship="Self.FK_InvoicePosition_Invoice" FromRole="Invoice" ToRole="InvoicePosition" />
+        </EntityType>
+        <EntityType Name="InvoicePosition">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CountProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_InvoicePosition_Invoice" FromRole="InvoicePosition" ToRole="Invoice" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_InvoicePosition_Product" FromRole="InvoicePosition" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderBuyer">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerId" Type="Int32" Nullable="false" />
+          <Property Name="OrderCost" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CostWitchDiscond" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_OrderBuyer_Buyer" FromRole="OrderBuyer" ToRole="Buyer" />
+          <NavigationProperty Name="PositionOrderBuyer" Relationship="Self.FK_PositionOrderBuyer_OrderBuyer" FromRole="OrderBuyer" ToRole="PositionOrderBuyer" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportID" />
+          </Key>
+          <Property Name="PassportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Serial" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IssuedByWhom" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_Buyer" FromRole="Passport" ToRole="Buyer" />
+        </EntityType>
+        <EntityType Name="PositionOrderBuyer">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CountProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderBuyer" Relationship="Self.FK_PositionOrderBuyer_OrderBuyer" FromRole="PositionOrderBuyer" ToRole="OrderBuyer" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_PositionOrderBuyer_Product" FromRole="PositionOrderBuyer" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="PostName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Post_Company" FromRole="Post" ToRole="Company" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="PricePerUnit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="InvoicePosition" Relationship="Self.FK_InvoicePosition_Product" FromRole="Product" ToRole="InvoicePosition" />
+          <NavigationProperty Name="PositionOrderBuyer" Relationship="Self.FK_PositionOrderBuyer_Product" FromRole="Product" ToRole="PositionOrderBuyer" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="StoregeRoom" Relationship="Self.FK_StoregeRoom_Product" FromRole="Product" ToRole="StoregeRoom" />
+          <NavigationProperty Name="SypplyPosition" Relationship="Self.FK_SypplyPosition_Product1" FromRole="Product" ToRole="SypplyPosition" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeId" />
+          </Key>
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="StoregeRoom">
+          <Key>
+            <PropertyRef Name="StorageRoomId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="StorageRoomId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="CountProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_StoregeRoom_Company" FromRole="StoregeRoom" ToRole="Company" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_StoregeRoom_Product" FromRole="StoregeRoom" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Sypply">
+          <Key>
+            <PropertyRef Name="SupplyId" />
+          </Key>
+          <Property Name="SupplyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="DateSypply" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Sypply_Employee" FromRole="Sypply" ToRole="Employee" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_Sypply" FromRole="Sypply" ToRole="Invoice" />
+          <NavigationProperty Name="SypplyPosition" Relationship="Self.FK_SypplyPosition_Product" FromRole="Sypply" ToRole="SypplyPosition" />
+        </EntityType>
+        <EntityType Name="SypplyPosition">
+          <Key>
+            <PropertyRef Name="SypplyId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="SypplyId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CountProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_SypplyPosition_Product1" FromRole="SypplyPosition" ToRole="Product" />
+          <NavigationProperty Name="Sypply" Relationship="Self.FK_SypplyPosition_Product" FromRole="SypplyPosition" ToRole="Sypply" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Buyer_Buyer">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="1" />
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportID" />
+            </Principal>
+            <Dependent Role="Buyer">
+              <PropertyRef Name="PassportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderBuyer_Buyer">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="OrderBuyer" Type="Self.OrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="BuyerId" />
+            </Principal>
+            <Dependent Role="OrderBuyer">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoregeRoom_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="StoregeRoom" Type="Self.StoregeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="StoregeRoom">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sypply_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Sypply">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Sypply">
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sypply">
+              <PropertyRef Name="SupplyId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SypplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePosition_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="InvoicePosition" Type="Self.InvoicePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="IvoiceId" />
+            </Principal>
+            <Dependent Role="InvoicePosition">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoicePosition_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="InvoicePosition" Type="Self.InvoicePosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="InvoicePosition">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionOrderBuyer_OrderBuyer">
+          <End Role="OrderBuyer" Type="Self.OrderBuyer" Multiplicity="1" />
+          <End Role="PositionOrderBuyer" Type="Self.PositionOrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderBuyer">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="PositionOrderBuyer">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionOrderBuyer_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PositionOrderBuyer" Type="Self.PositionOrderBuyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="PositionOrderBuyer">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoregeRoom_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="StoregeRoom" Type="Self.StoregeRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="StoregeRoom">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SypplyPosition_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SypplyPosition" Type="Self.SypplyPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="SypplyPosition">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SypplyPosition_Product">
+          <End Role="Sypply" Type="Self.Sypply" Multiplicity="1" />
+          <End Role="SypplyPosition" Type="Self.SypplyPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sypply">
+              <PropertyRef Name="SupplyId" />
+            </Principal>
+            <Dependent Role="SypplyPosition">
+              <PropertyRef Name="SypplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDKREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brand" EntityType="Self.Brand" />
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+          <EntitySet Name="InvoicePosition" EntityType="Self.InvoicePosition" />
+          <EntitySet Name="OrderBuyer" EntityType="Self.OrderBuyer" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" />
+          <EntitySet Name="PositionOrderBuyer" EntityType="Self.PositionOrderBuyer" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+          <EntitySet Name="StoregeRoom" EntityType="Self.StoregeRoom" />
+          <EntitySet Name="Sypply" EntityType="Self.Sypply" />
+          <EntitySet Name="SypplyPosition" EntityType="Self.SypplyPosition" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Buyer_Buyer" Association="Self.FK_Buyer_Buyer">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Buyer" EntitySet="Buyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderBuyer_Buyer" Association="Self.FK_OrderBuyer_Buyer">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="OrderBuyer" EntitySet="OrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_Company" Association="Self.FK_Post_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoregeRoom_Company" Association="Self.FK_StoregeRoom_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="StoregeRoom" EntitySet="StoregeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sypply_Employee" Association="Self.FK_Sypply_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Sypply" EntitySet="Sypply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Sypply" Association="Self.FK_Invoice_Sypply">
+            <End Role="Sypply" EntitySet="Sypply" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePosition_Invoice" Association="Self.FK_InvoicePosition_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoicePosition" EntitySet="InvoicePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoicePosition_Product" Association="Self.FK_InvoicePosition_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="InvoicePosition" EntitySet="InvoicePosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionOrderBuyer_OrderBuyer" Association="Self.FK_PositionOrderBuyer_OrderBuyer">
+            <End Role="OrderBuyer" EntitySet="OrderBuyer" />
+            <End Role="PositionOrderBuyer" EntitySet="PositionOrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionOrderBuyer_Product" Association="Self.FK_PositionOrderBuyer_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PositionOrderBuyer" EntitySet="PositionOrderBuyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoregeRoom_Product" Association="Self.FK_StoregeRoom_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="StoregeRoom" EntitySet="StoregeRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SypplyPosition_Product1" Association="Self.FK_SypplyPosition_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SypplyPosition" EntitySet="SypplyPosition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SypplyPosition_Product" Association="Self.FK_SypplyPosition_Product">
+            <End Role="Sypply" EntitySet="Sypply" />
+            <End Role="SypplyPosition" EntitySet="SypplyPosition" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BDKRModelContainer" CdmEntityContainer="BDKREntities">
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="BDKRModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyer">
+            <EntityTypeMapping TypeName="BDKRModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="PassportId" ColumnName="PassportId" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="BDKRModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="BDKRModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="BDKRModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="IvoiceId" ColumnName="IvoiceId" />
+                <ScalarProperty Name="SypplyId" ColumnName="SypplyId" />
+                <ScalarProperty Name="DdateInvoice" ColumnName="DdateInvoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoicePosition">
+            <EntityTypeMapping TypeName="BDKRModel.InvoicePosition">
+              <MappingFragment StoreEntitySet="InvoicePosition">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CountProduct" ColumnName="CountProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderBuyer">
+            <EntityTypeMapping TypeName="BDKRModel.OrderBuyer">
+              <MappingFragment StoreEntitySet="OrderBuyer">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="OrderCost" ColumnName="OrderCost" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="CostWitchDiscond" ColumnName="CostWitchDiscond" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="BDKRModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="IssuedByWhom" ColumnName="IssuedByWhom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionOrderBuyer">
+            <EntityTypeMapping TypeName="BDKRModel.PositionOrderBuyer">
+              <MappingFragment StoreEntitySet="PositionOrderBuyer">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CountProduct" ColumnName="CountProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="BDKRModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="PostName" ColumnName="PostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="BDKRModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductType">
+            <EntityTypeMapping TypeName="BDKRModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoregeRoom">
+            <EntityTypeMapping TypeName="BDKRModel.StoregeRoom">
+              <MappingFragment StoreEntitySet="StoregeRoom">
+                <ScalarProperty Name="StorageRoomId" ColumnName="StorageRoomId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CountProduct" ColumnName="CountProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sypply">
+            <EntityTypeMapping TypeName="BDKRModel.Sypply">
+              <MappingFragment StoreEntitySet="Sypply">
+                <ScalarProperty Name="SupplyId" ColumnName="SupplyId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DateSypply" ColumnName="DateSypply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SypplyPosition">
+            <EntityTypeMapping TypeName="BDKRModel.SypplyPosition">
+              <MappingFragment StoreEntitySet="SypplyPosition">
+                <ScalarProperty Name="SypplyId" ColumnName="SypplyId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CountProduct" ColumnName="CountProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDKRModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

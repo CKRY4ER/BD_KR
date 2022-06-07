@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BdKr", "BdKr\BdKr.csproj", "{7EBE53F3-EDDF-4E5B-862C-A6A0A5C2645D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDKR", "BDKR\BDKR.csproj", "{60F539C5-16EF-48B2-B807-8D633CC2A8CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7EBE53F3-EDDF-4E5B-862C-A6A0A5C2645D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EBE53F3-EDDF-4E5B-862C-A6A0A5C2645D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EBE53F3-EDDF-4E5B-862C-A6A0A5C2645D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EBE53F3-EDDF-4E5B-862C-A6A0A5C2645D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F539C5-16EF-48B2-B807-8D633CC2A8CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F539C5-16EF-48B2-B807-8D633CC2A8CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F539C5-16EF-48B2-B807-8D633CC2A8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F539C5-16EF-48B2-B807-8D633CC2A8CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {00969CBD-B3D4-496E-B3AE-D1346A7D69E7}
+		SolutionGuid = {C4376D46-C8A1-4DD3-BB12-92261E26B043}
 	EndGlobalSection
 EndGlobal
