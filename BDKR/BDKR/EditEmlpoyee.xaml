@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="Просмотр информации, редактирование сотрудника" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Место работы" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="Должность" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="Фамилия" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="Имя" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Text="Отчество" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="SaveChange" Content="Сохранить изменения" Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Click="SaveChange_Click"/>
+
+        <ComboBox Grid.Row="0" Grid.Column="1" FontSize="20" x:Name="CompanyCombo" DisplayMemberPath="Adress" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" FontSize="20" x:Name="PostCombo" DisplayMemberPath="PostName" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" FontSize="20" Text="{Binding Surname}" VerticalAlignment="Center" MaxLength="20"/>
+        <TextBox Grid.Row="3" Grid.Column="1" FontSize="20" Text="{Binding Name}" VerticalAlignment="Center" MaxLength="20"/>
+        <TextBox Grid.Row="4" Grid.Column="1" FontSize="20" Text="{Binding MiddleName}" VerticalAlignment="Center" MaxLength="20"/>
+
     </Grid>
 </Window>

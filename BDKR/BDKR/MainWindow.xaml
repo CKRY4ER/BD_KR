@@ -46,6 +46,7 @@
                     </Grid>
                     <Grid Grid.Row="2">
                         <Button x:Name="AddBuyerBtn" Content="Добавить покупателя" Width="Auto" HorizontalAlignment="Left" Click="AddBuyerBtn_Click"  FontSize="20" Height="38" VerticalAlignment="Top"/>
+                        <Button x:Name="UpdateBuyerGrid" Content="Обновить таблицу" Width="Auto" HorizontalAlignment="Center" FontSize="20" Click="UpdateBuyerGrid_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -79,6 +80,7 @@
 
                     <Button x:Name="AddEmployee" Grid.Row="2" Content="Добавить сотрудника" Width="Auto" HorizontalAlignment="Left" FontSize="20" Click="AddEmployee_Click"/>
                     <Button x:Name="DeleteEmployee" Grid.Row="2" Content="Удалить сотрудника" Width="Auto" HorizontalAlignment="Right" FontSize="20" Click="DeleteEmployee_Click"/>
+                    <Button Grid.Row="2" x:Name="UpdateEmployeeGrid" Content="Обновить таблицу" Width="Auto" HorizontalAlignment="Center" FontSize="20" Click="UpdateEmployeeGrid_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Name="OrderSypplyInfo">

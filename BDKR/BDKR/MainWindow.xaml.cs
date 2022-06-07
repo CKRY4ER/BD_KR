@@ -31,21 +31,17 @@ namespace BDKR
         {
             Buyer buyer = BuyerGrid.SelectedItem as Buyer;
             new RedactBuyerWindow(buyer).Show();
-
-            BDKREntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-            BuyerGrid.ItemsSource = BDKREntities.GetContext().Buyer.ToList();
         }
 
         private void AddBuyerBtn_Click(object sender, RoutedEventArgs e)
         {
             new AddBuyerWindow().Show();
-            BDKREntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-            BuyerGrid.ItemsSource = BDKREntities.GetContext().Buyer.ToList();
         }
 
         private void EmlpoyeeDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            Employee employee = EmlpoyeeDataGrid.SelectedItem as Employee;
+            new EditEmlpoyee(employee).Show();
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
@@ -56,6 +52,18 @@ namespace BDKR
         private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void UpdateBuyerGrid_Click(object sender, RoutedEventArgs e)
+        {
+            BDKREntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+            BuyerGrid.ItemsSource = BDKREntities.GetContext().Buyer.ToList();
+        }
+
+        private void UpdateEmployeeGrid_Click(object sender, RoutedEventArgs e)
+        {
+            BDKREntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+            EmlpoyeeDataGrid.ItemsSource = BDKREntities.GetContext().Employee.ToList();
         }
     }
 }
