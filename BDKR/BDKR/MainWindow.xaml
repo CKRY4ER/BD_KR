@@ -88,6 +88,18 @@
                     <TextBlock Text="Информация о заказах и поставках" FontSize="20">
                     </TextBlock>
                 </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </TabItem>
             <TabItem Name="Query">
                 <TabItem.Header >

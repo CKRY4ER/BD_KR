@@ -65,6 +65,9 @@
     <Compile Include="AddBuyerWindow.xaml.cs">
       <DependentUpon>AddBuyerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Brand.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddBuyerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -46,12 +46,45 @@ namespace BDKR
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            new AddEmployeeWindow().Show();
         }
 
         private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (EmlpoyeeDataGrid.SelectedItem == null)
+                return;
 
+            Employee employee = EmlpoyeeDataGrid.SelectedItem as Employee;
+
+            List<Sypply> sypplies = BDKREntities.GetContext().Sypply
+                .Where(s=>s.EmployeeId==employee.EmployeeId)
+                .ToList();
+
+            if (sypplies.Count != 0) 
+            {
+                List<Employee> employees = BDKREntities.GetContext().Employee
+                    .Where(emp=>emp.Post.Company.Adress.Contains(employee.Post.Company.Adress))
+                    .ToList();
+
+                if (employees.Count != 0)
+                {
+                    foreach (Sypply sypply in sypplies)
+                    {
+                        sypply.EmployeeId = employees[0].EmployeeId;
+                    }
+                }
+            }
+                BDKREntities.GetContext().Employee.Remove(employee);
+
+            try
+            {
+                BDKREntities.GetContext().SaveChanges();
+                MessageBox.Show("Сотрудник удален из бд");
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
         }
 
         private void UpdateBuyerGrid_Click(object sender, RoutedEventArgs e)
