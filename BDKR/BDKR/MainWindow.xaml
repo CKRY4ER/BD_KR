@@ -31,16 +31,20 @@
                                   IsReadOnly="True" 
                                   ScrollViewer.VerticalScrollBarVisibility="Visible" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                  MouseDoubleClick="BuyerGrid_MouseDoubleClick"  FontSize="20">
+                                  MouseDoubleClick="BuyerGrid_MouseDoubleClick"  FontSize="20"
+                                  Margin="0,0,0,5">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Код покупателя" Width="*" Binding="{Binding BuyerId}"/>
-                                <DataGridTextColumn Header="Код пасспорта" Width="*" Binding="{Binding PassportId}"/>
-                                <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding Surname}"/>
-                                <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Отчество" Width="*" Binding="{Binding MiddleName}"/>
-                                <DataGridTextColumn Header="Дата рождения" Width="*" Binding="{Binding Birthday}"/>
-                                <DataGridTextColumn Header="Номер телефона" Width="*" Binding="{Binding PhoneNumber}"/>
-                                <DataGridTextColumn Header="Номер карты" Width="*" Binding="{Binding CardNumber}"/>
+                                <DataGridTextColumn Header="Id покупателя"
+                                                    Width="Auto" 
+                                                    Binding="{Binding BuyerId}"/>
+                                <DataGridTextColumn Header="Серия паспорта" Width="Auto" Binding="{Binding Passport.Serial}"/>
+                                <DataGridTextColumn Header="Номер паспорта" Width="Auto" Binding="{Binding Passport.Number}"/>
+                                <DataGridTextColumn Header="Фамилия" Width="Auto" Binding="{Binding Surname}"/>
+                                <DataGridTextColumn Header="Имя" Width="Auto" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Отчество" Width="Auto" Binding="{Binding MiddleName}"/>
+                                <DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday}"/>
+                                <DataGridTextColumn Header="Номер телефона" Width="Auto" Binding="{Binding PhoneNumber}"/>
+                                <DataGridTextColumn Header="Номер карты" Width="Auto" Binding="{Binding CardNumber}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -68,13 +72,15 @@
                                   IsReadOnly="True" 
                                   ScrollViewer.VerticalScrollBarVisibility="Visible" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                  MouseDoubleClick="EmlpoyeeDataGrid_MouseDoubleClick"  FontSize="20" Margin="0,38,0,0" Grid.RowSpan="2">
+                                  MouseDoubleClick="EmlpoyeeDataGrid_MouseDoubleClick"  FontSize="20" Margin="0,38,0,5" Grid.RowSpan="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Место работы" Width="*" Binding="{Binding Post.Company.Adress}"/>
-                            <DataGridTextColumn Header="Должность" Width="*" Binding="{Binding Post.PostName}"/>
-                            <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding Surname}"/>
-                            <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Отчество" Width="*" Binding="{Binding MiddleName}"/>
+                            <DataGridTextColumn Header="Место работы" 
+                                                Width="Auto" 
+                                                Binding="{Binding Post.Company.Adress}"/>
+                            <DataGridTextColumn Header="Должность" Width="Auto" Binding="{Binding Post.PostName}"/>
+                            <DataGridTextColumn Header="Фамилия" Width="Auto" Binding="{Binding Surname}"/>
+                            <DataGridTextColumn Header="Имя" Width="Auto" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Отчество" Width="Auto" Binding="{Binding MiddleName}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 
@@ -96,9 +102,118 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
+                    <TextBlock 
+                        Text="Таблица заказов" 
+                        FontSize="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"/>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Таблица поставок"
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"/>
+
+                    <Grid Grid.Row="1">
+                        <DataGrid FontSize="20" 
+                                  x:Name="OrderDataGrid"
+                                  AutoGenerateColumns="False" 
+                                  IsReadOnly="True"
+                                  Margin="0,0,5,5">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Header="Фамилия"
+                                                    Width="Auto"
+                                                    Binding="{Binding Buyer.Surname}"
+                                                    />
+                                <DataGridTextColumn Header="Имя"
+                                                    Width="Auto"
+                                                    Binding="{Binding Buyer.Name}"/>
+                                <DataGridTextColumn Header="Отчество"
+                                                    Width="Auto"
+                                                    Binding="{Binding Buyer.MiddleName}"/>
+                                <DataGridTextColumn Header="Код заказа"
+                                                    Width="Auto"
+                                                    Binding="{Binding OrderId}"/>
+                                <DataGridTextColumn Header="Полная стоимость заказа"
+                                                    Width="Auto"
+                                                    Binding="{Binding OrderCost}"/>
+                                <DataGridTextColumn Header="Скидка %"
+                                                    Binding="{Binding Discount}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="Конечная стоимость"
+                                                    Width="Auto"
+                                                    Binding="{Binding CostWitchDiscond}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Button
+                        x:Name="CreateOrderBt"
+                        Grid.Row="2"
+                        Content="Оформить заказ"
+                        HorizontalAlignment="Left"
+                        FontSize="20"
+                        Click="CreateOrderBt_Click"/>
+
+                    <Button Grid.Row="2" 
+                            x:Name="UpdateOrderAndSypplyGrid" 
+                            Content="Обновить таблицы" 
+                            Width="Auto" 
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Center"
+                            FontSize="20" 
+                            Click="UpdateOrderAndSypplyGrid_Click"/>
+
+                    <Button Grid.Row="2"
+                            Grid.Column="1"
+                            x:Name="CreateSypplyBt"
+                            Content="Оформить поставку"
+                            Width="Auto"
+                            HorizontalAlignment="Right"
+                            FontSize="20"
+                            Click="CreateSypplyBt_Click"/>
+
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <DataGrid 
+                            x:Name="SypplyDataGrid"
+                            FontSize="20"
+                            AutoGenerateColumns="False"
+                            IsReadOnly="True"
+                            Margin="5,0,0,5">
+                            
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Header="Место работы"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Post.Company.Adress}"/>
+                                <DataGridTextColumn
+                                    Header="Фамилия"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Surname}"/>
+                                <DataGridTextColumn
+                                    Header="Имя"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Name}"/>
+                                <DataGridTextColumn
+                                    Header="Отчество"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.MiddleName}"/>
+                                <DataGridTextColumn
+                                    Header="Код поставки"
+                                    Width="Auto"
+                                    Binding="{Binding OrderId}"/>
+                                <DataGridTextColumn
+                                    Header="Дата поставки"
+                                    Width="*"
+                                    Binding="{Binding DateSypply}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Name="Query">

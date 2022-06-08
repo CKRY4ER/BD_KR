@@ -32,16 +32,16 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Label Content="Серия пасспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
+                <Label Content="Серия паспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             </Grid>
             
             <Grid Grid.Row="1">
-                <Label Content="Номер пасспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
+                <Label Content="Номер паспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             </Grid>
             <Grid Grid.Row="2">
-                <Label Content="Дата выдачи пасспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
+                <Label Content="Дата выдачи паспорта" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             </Grid>
-            <Label Grid.Row="3" Content="Кем выдан пасспорт" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
+            <Label Grid.Row="3" Content="Кем выдан паспорт" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             <Label Grid.Row="4" Content="Фамилия" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             <Label Grid.Row="5" Content="Имя" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>
             <Label Grid.Row="6" Content="Отчество" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></Label>

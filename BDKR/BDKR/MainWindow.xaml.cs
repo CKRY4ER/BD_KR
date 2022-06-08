@@ -25,6 +25,8 @@ namespace BDKR
             InitializeComponent();
             BuyerGrid.ItemsSource = BDKREntities.GetContext().Buyer.ToList();
             EmlpoyeeDataGrid.ItemsSource = BDKREntities.GetContext().Employee.ToList();
+            SypplyDataGrid.ItemsSource = BDKREntities.GetContext().Sypply.ToList();
+            OrderDataGrid.ItemsSource = BDKREntities.GetContext().OrderBuyer.ToList();
         }
 
         private void BuyerGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -97,6 +99,26 @@ namespace BDKR
         {
             BDKREntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
             EmlpoyeeDataGrid.ItemsSource = BDKREntities.GetContext().Employee.ToList();
+        }
+
+        private void OrderDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void CreateOrderBt_Click(object sender, RoutedEventArgs e)
+        {
+            new CreateOrderWindow().Show();
+        }
+
+        private void UpdateOrderAndSypplyGrid_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CreateSypplyBt_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
