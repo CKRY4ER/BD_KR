@@ -148,6 +148,9 @@
                                 <DataGridTextColumn Header="Конечная стоимость"
                                                     Width="Auto"
                                                     Binding="{Binding CostWitchDiscond}"/>
+                                <DataGridTextColumn Header="Дата заказа"
+                                                    Width="Auto"
+                                                    Binding="{Binding DataOfOrder}"/>
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -184,6 +187,7 @@
                             FontSize="20"
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
+                            VerticalScrollBarVisibility="Visible"
                             Margin="5,0,0,5">
                             
                             <DataGrid.Columns>
@@ -206,10 +210,10 @@
                                 <DataGridTextColumn
                                     Header="Код поставки"
                                     Width="Auto"
-                                    Binding="{Binding OrderId}"/>
+                                    Binding="{Binding SypplyId}"/>
                                 <DataGridTextColumn
                                     Header="Дата поставки"
-                                    Width="*"
+                                    Width="Auto"
                                     Binding="{Binding DateSypply}"/>
                             </DataGrid.Columns>
                         </DataGrid>

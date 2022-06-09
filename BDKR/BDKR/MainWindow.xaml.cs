@@ -113,7 +113,10 @@ namespace BDKR
 
         private void UpdateOrderAndSypplyGrid_Click(object sender, RoutedEventArgs e)
         {
-
+            SypplyDataGrid.ItemsSource = null;
+            OrderDataGrid.ItemsSource = null;
+            SypplyDataGrid.ItemsSource = BDKREntities.GetContext().Sypply.ToList();
+            OrderDataGrid.ItemsSource = BDKREntities.GetContext().OrderBuyer.ToList();
         }
 
         private void CreateSypplyBt_Click(object sender, RoutedEventArgs e)

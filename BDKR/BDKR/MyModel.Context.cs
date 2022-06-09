@@ -15,13 +15,12 @@ namespace BDKR
     
     public partial class BDKREntities : DbContext
     {
-
         private static BDKREntities _context;
         public BDKREntities()
             : base("name=BDKREntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -33,7 +32,6 @@ namespace BDKR
                 _context = new BDKREntities();
             return _context;
         }
-    
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Buyer> Buyer { get; set; }
         public DbSet<Company> Company { get; set; }

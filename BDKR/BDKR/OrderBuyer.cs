@@ -24,6 +24,7 @@ namespace BDKR
         public decimal OrderCost { get; set; }
         public decimal Discount { get; set; }
         public decimal CostWitchDiscond { get; set; }
+        public System.DateTime DataOfOrder { get; set; }
     
         public virtual Buyer Buyer { get; set; }
         public virtual ICollection<PositionOrderBuyer> PositionOrderBuyer { get; set; }

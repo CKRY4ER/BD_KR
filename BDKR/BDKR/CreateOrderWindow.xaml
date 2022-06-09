@@ -89,7 +89,8 @@
                 <ComboBox x:Name="BuyerComboBox"
                           Grid.Column="1"
                           FontSize="20"
-                          VerticalAlignment="Center"/>
+                          VerticalAlignment="Center"
+                          DisplayMemberPath="BuyerId"/>
 
                 <TextBox x:Name="ProductName"
                          Grid.Column="1"
@@ -134,20 +135,22 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Бренд"
                                             Width="Auto"
-                                            Binding="{Binding Brand.BrandName}"/>
+                                            Binding="{Binding BrandName}"/>
                     <DataGridTextColumn Header="Тип продукта"
                                             Width="Auto"
-                                            Binding="{Binding ProductType.TypeName}"/>
+                                            Binding="{Binding TypeName}"/>
                     <DataGridTextColumn Header="Название продукта"
                                             Width="Auto"
                                             Binding="{Binding ProductName}"/>
                     <DataGridTextColumn Header="Кол-во"
                                             Width="Auto"
-                                            x:Name="CountProductOrder"/>
+                                            x:Name="CountProductOrder"
+                                        Binding="{Binding CountProduct}"/>
 
                     <DataGridTextColumn Header="Общая цена"
                                         Width="Auto"
-                                        x:Name="FulPriceProduct"/>
+                                        x:Name="FulPriceProduct"
+                                        Binding="{Binding FullPrice}"/>
                 </DataGrid.Columns>
 
             </DataGrid>
