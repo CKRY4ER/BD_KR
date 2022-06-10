@@ -80,11 +80,23 @@
     <Compile Include="CreateOrderWindow.xaml.cs">
       <DependentUpon>CreateOrderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateSypply.xaml.cs">
+      <DependentUpon>CreateSypply.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditEmlpoyee.xaml.cs">
       <DependentUpon>EditEmlpoyee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FullIfoProduct.xaml.cs">
+      <DependentUpon>FullIfoProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FullInfoOrder.xaml.cs">
+      <DependentUpon>FullInfoOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FullInfoSypply.xaml.cs">
+      <DependentUpon>FullInfoSypply.xaml</DependentUpon>
     </Compile>
     <Compile Include="Invoice.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -142,7 +154,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateSypply.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditEmlpoyee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullIfoProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfoOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfoSypply.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

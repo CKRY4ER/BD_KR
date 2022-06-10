@@ -44,7 +44,15 @@ namespace BDKR
         public CreateOrderWindow()
         {
             InitializeComponent();
-            ProductDataGrid.ItemsSource = BDKREntities.GetContext().Product.ToList();
+            List<StoregeRoom> storegeRooms = BDKREntities.GetContext().StoregeRoom.ToList();
+            List<Product> pr = new List<Product>();
+            foreach(StoregeRoom sr in storegeRooms)
+            {
+                int prId = sr.ProductId;
+                var prod = BDKREntities.GetContext().Product.Where(p=>p.ProductId==prId).ToList();
+                pr.Add(prod[0]);
+            }
+            ProductDataGrid.ItemsSource = pr;
             BuyerComboBox.ItemsSource = BDKREntities.GetContext().Buyer.ToList();
             order = new OrderBuyer();
             
@@ -101,7 +109,7 @@ namespace BDKR
                 return;
             foreach(Prod pr in prod)
             {
-                if (pr.ProductId == _selectedProduct.ProductId)
+                if (pr.ProductId == _selectedProductIbnOrder.ProductId)
                 {
                     prod.Remove(pr);
                     CalculatingFinalPrice();

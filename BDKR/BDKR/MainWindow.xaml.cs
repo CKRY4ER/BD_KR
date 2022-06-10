@@ -101,11 +101,6 @@ namespace BDKR
             EmlpoyeeDataGrid.ItemsSource = BDKREntities.GetContext().Employee.ToList();
         }
 
-        private void OrderDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void CreateOrderBt_Click(object sender, RoutedEventArgs e)
         {
             new CreateOrderWindow().Show();
@@ -121,7 +116,19 @@ namespace BDKR
 
         private void CreateSypplyBt_Click(object sender, RoutedEventArgs e)
         {
+            new CreateSypply().Show();
+        }
 
+        private void OrderDataGrid_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            OrderBuyer order = OrderDataGrid.SelectedItem as OrderBuyer;
+            new FullInfoOrder(order).Show();
+        }
+
+        private void SypplyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Sypply sypply = SypplyDataGrid.SelectedItem as Sypply;
+            new FullInfoSypply(sypply).Show();
         }
     }
 }

@@ -124,6 +124,7 @@
                                   x:Name="OrderDataGrid"
                                   AutoGenerateColumns="False" 
                                   IsReadOnly="True"
+                                  MouseDoubleClick="OrderDataGrid_MouseDoubleClick_1"
                                   Margin="0,0,5,5">
                             <DataGrid.Columns >
                                 <DataGridTextColumn Header="Фамилия"
@@ -188,7 +189,8 @@
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
                             VerticalScrollBarVisibility="Visible"
-                            Margin="5,0,0,5">
+                            Margin="5,0,0,5"
+                            MouseDoubleClick="SypplyDataGrid_MouseDoubleClick">
                             
                             <DataGrid.Columns>
                                 <DataGridTextColumn
