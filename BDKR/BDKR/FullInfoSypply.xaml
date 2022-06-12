@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BDKR"
         mc:Ignorable="d"
-        Title="FullInfoSypply" Height="543" Width="997">
+        Title="Полная информация о поставке" Height="543" Width="997">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -121,7 +121,8 @@
                       x:Name="ProductDataGrid"
                       VerticalScrollBarVisibility="Visible"
                       HorizontalScrollBarVisibility="Auto"
-                      FontSize="20">
+                      FontSize="20"
+                      MouseDoubleClick="ProductDataGrid_MouseDoubleClick">
                 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Бренд"

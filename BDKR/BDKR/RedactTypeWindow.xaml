@@ -1,0 +1,54 @@
+﻿<Window x:Class="BDKR.RedactTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Редактирование типов продуктов" Height="309" Width="505">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Выберите тип"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Новое название"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="1"/>
+
+        <ComboBox Grid.Column="1"
+                  FontSize="20"
+                  VerticalAlignment="Center"
+                  DisplayMemberPath="TypeName"
+                  x:Name="TypeCombo"/>
+
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 FontSize="20"
+                 VerticalAlignment="Center"
+                 x:Name="NameType"
+                 MaxLength="30"/>
+
+        <Button Grid.Row="2"
+                Grid.ColumnSpan="2"
+                FontSize="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="Сохранить изменения"
+                x:Name="SaveChange"
+                Click="SaveChange_Click"/>
+    </Grid>
+</Window>

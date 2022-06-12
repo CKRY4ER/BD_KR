@@ -1,0 +1,71 @@
+﻿<Window x:Class="BDKR.FullInfoCompanyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Полная информация о компании" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список сотрудников в компании"
+                   FontSize="20"/>
+
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  VerticalScrollBarVisibility="Visible"
+                  HorizontalScrollBarVisibility="Visible"
+                  FontSize="20"
+                  x:Name="EmployeeGrid">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Должность"
+                                    Width="Auto"
+                                    Binding="{Binding Post.PostName}"/>
+
+                <DataGridTextColumn Header="Фамилия"
+                                    Width="Auto"
+                                    Binding="{Binding Surname}"/>
+
+                <DataGridTextColumn Header="Имя"
+                                    Binding="{Binding Name}"
+                                    Width="Auto"/>
+
+                <DataGridTextColumn Header="Отчество"
+                                    Binding="{Binding MiddleName}"
+                                    Width="Auto"/>
+            </DataGrid.Columns>
+            
+            
+        </DataGrid>
+
+        <DataGrid Grid.Row="3"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  VerticalScrollBarVisibility="Visible"
+                  HorizontalScrollBarVisibility="Visible"
+                  FontSize="20"
+                  x:Name="StoregeRoomGrid"
+                  MouseDoubleClick="StoregeRoomGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер склада"
+                                    Width="Auto"
+                                    Binding="{Binding StorageRoomId}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="2"
+                   Text="Список складов компании"
+                   FontSize="20"/>
+        
+        
+    </Grid>
+</Window>

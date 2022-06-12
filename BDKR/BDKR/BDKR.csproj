@@ -62,11 +62,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddBrandWindow.xaml.cs">
+      <DependentUpon>AddBrandWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddCompanyWindow.xaml.cs">
+      <DependentUpon>AddCompanyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddTypeWindow.xaml.cs">
+      <DependentUpon>AddTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FullInfoCompanyWindow.xaml.cs">
+      <DependentUpon>FullInfoCompanyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FullInfoInvoiceWindow.xaml.cs">
+      <DependentUpon>FullInfoInvoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RedactBrandWindow.xaml.cs">
+      <DependentUpon>RedactBrandWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddBuyerWindow.xaml.cs">
       <DependentUpon>AddBuyerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Brand.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -130,6 +151,9 @@
     <Compile Include="RedactBuyerWindow.xaml.cs">
       <DependentUpon>RedactBuyerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RedactTypeWindow.xaml.cs">
+      <DependentUpon>RedactTypeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StoregeRoom.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -142,11 +166,39 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AddBrandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddCompanyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfoCompanyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfoInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RedactBrandWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddBuyerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,6 +239,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RedactBuyerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RedactTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

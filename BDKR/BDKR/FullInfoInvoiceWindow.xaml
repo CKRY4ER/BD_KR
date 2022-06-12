@@ -1,0 +1,85 @@
+﻿<Window x:Class="BDKR.FullInfoInvoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Полная информация о поставке" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Поставка"
+                   FontSize="20"/>
+
+        <TextBlock Grid.Row="2"
+                   FontSize="20"
+                   Text="Список товаров в накладной"/>
+
+        <DataGrid Grid.Row="1"
+                            x:Name="SypplyDataGrid"
+                            FontSize="20"
+                            AutoGenerateColumns="False"
+                            IsReadOnly="True"
+                            VerticalScrollBarVisibility="Visible"
+                            Margin="5,0,0,5"
+                            MouseDoubleClick="SypplyDataGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                                    Header="Место работы"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Post.Company.Adress}"/>
+                <DataGridTextColumn
+                                    Header="Фамилия"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Surname}"/>
+                <DataGridTextColumn
+                                    Header="Имя"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.Name}"/>
+                <DataGridTextColumn
+                                    Header="Отчество"
+                                    Width="Auto"
+                                    Binding="{Binding Employee.MiddleName}"/>
+                <DataGridTextColumn
+                                    Header="Код поставки"
+                                    Width="Auto"
+                                    Binding="{Binding SypplyId}"/>
+                <DataGridTextColumn
+                                    Header="Дата поставки"
+                                    Width="Auto"
+                                    Binding="{Binding DateSypply}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="3"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      x:Name="ProductDataGrid"
+                      VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Auto"
+                      FontSize="20"
+                      MouseDoubleClick="ProductDataGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Бренд"
+                                        Binding="{Binding Product.Brand.BrandName}"
+                                        Width="Auto"/>
+
+                <DataGridTextColumn Header="Тип товара"
+                                        Binding="{Binding Product.ProductType.TypeName}"
+                                        Width="Auto"/>
+
+                <DataGridTextColumn Header="Название товара"
+                                        Binding="{Binding Product.ProductName}"
+                                        Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

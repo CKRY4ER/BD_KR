@@ -25,5 +25,11 @@ namespace BDKR
             DataContext = sypply;
             ProductDataGrid.ItemsSource = sypply.SypplyPosition;
         }
+
+        private void ProductDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SypplyPosition spos = ProductDataGrid.SelectedItem as SypplyPosition;
+            new FullIfoProduct(spos.Product).Show();
+        }
     }
 }

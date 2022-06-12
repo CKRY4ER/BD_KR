@@ -24,6 +24,13 @@ namespace BDKR
             InitializeComponent();
             DataContext = product;
             var storegRoom = BDKREntities.GetContext().StoregeRoom.Where(sr=>sr.ProductId==product.ProductId).ToList();
+            if (storegRoom.Count == 0)
+            {
+                Adress.Text = "";
+                Number.Text = "";
+                CountProduct.Text = "";
+                return;
+            }
             int srId = storegRoom[0].StorageRoomId;
 
             Adress.Text = storegRoom[0].Company.Adress;

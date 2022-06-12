@@ -1,0 +1,116 @@
+﻿<Window x:Class="BDKR.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Добавление продукта" Height="333" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Артикул"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   Margin="5,0,5,0"/>
+
+        <TextBlock Text="Название бренда"
+                   Grid.Row="1"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5,0,5,0"/>
+
+        <TextBlock Grid.Row="2"
+                   Text="Название типа"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5,0,5,0"/>
+
+        <TextBlock Grid.Column ="2"
+                   Text="Название продукта"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5,0,5,0"/>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="2"
+                   Text="Описание продукта"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5,0,5,0"/>
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   Text="Цена за единицу"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5,0,5,0"/>
+
+        <TextBox Grid.Column="1"
+                 Text="{Binding ArticleNumber}"
+                 FontSize="20"
+                 VerticalAlignment="Center"
+                 MaxLength="15"/>
+
+        <ComboBox Grid.Column="1"
+                  Grid.Row="1"
+                  x:Name="BrandBox"
+                  FontSize="20"
+                  VerticalAlignment="Center"
+                  DisplayMemberPath="BrandName"/>
+
+        <ComboBox Grid.Column="1"
+                  Grid.Row="2"
+                  x:Name="TypeBox"
+                  FontSize="20"
+                  VerticalAlignment="Center"
+                  DisplayMemberPath="TypeName"
+                  />
+
+        <TextBox Grid.Column="3"
+                 Text="{Binding ProductName}"
+                 FontSize="20"
+                 VerticalAlignment="Center"
+                 MaxLength="50"/>
+
+        <TextBox Grid.Column="3"
+                 Grid.Row="1"
+                 FontSize="20"
+                 MaxLength="150"
+                 Text="{Binding Description}"
+                 VerticalAlignment="Center"/>
+
+        <TextBox Grid.Column="3"
+                 Grid.Row="2"
+                 FontSize="20"
+                 Text="{Binding PricePerUnit}"
+                 VerticalAlignment="Center"/>
+
+        <Button Grid.Row="3"
+                Grid.ColumnSpan="4"
+                Content="Сохранить изменения"
+                FontSize="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                x:Name="AddNewProduct"
+                Click="AddNewProduct_Click"/>
+    </Grid>
+</Window>
