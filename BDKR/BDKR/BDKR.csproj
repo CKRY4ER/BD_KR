@@ -68,14 +68,26 @@
     <Compile Include="AddCompanyWindow.xaml.cs">
       <DependentUpon>AddCompanyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddOrrDeletedProductOnSellWindow.xaml.cs">
+      <DependentUpon>AddOrrDeletedProductOnSellWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStoregeRoomWindow.xaml.cs">
+      <DependentUpon>AddStoregeRoomWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddTypeWindow.xaml.cs">
       <DependentUpon>AddTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteProductFromSell.xaml.cs">
+      <DependentUpon>DeleteProductFromSell.xaml</DependentUpon>
     </Compile>
     <Compile Include="FullInfoCompanyWindow.xaml.cs">
       <DependentUpon>FullInfoCompanyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="FullInfoInvoiceWindow.xaml.cs">
       <DependentUpon>FullInfoInvoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FullInfoStoregRoomWindow.xaml.cs">
+      <DependentUpon>FullInfoStoregRoomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RedactBrandWindow.xaml.cs">
       <DependentUpon>RedactBrandWindow.xaml</DependentUpon>
@@ -174,7 +186,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddOrrDeletedProductOnSellWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStoregeRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteProductFromSell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FullInfoInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfoStoregRoomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

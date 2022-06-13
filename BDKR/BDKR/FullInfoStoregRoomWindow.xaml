@@ -1,0 +1,51 @@
+﻿<Window x:Class="BDKR.FullInfoStoregRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Полная информация о складе" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список товаров на складе"
+                   FontSize="20"/>
+
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto"
+                  FontSize="20"
+                  x:Name="ProductDataGrid"
+                  MouseDoubleClick="ProductDataGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Бренд товара"
+                                    Width="Auto"
+                                    Binding="{Binding Product.Brand.BrandName}"/>
+
+                <DataGridTextColumn Header="Тип товара"
+                                    Width="Auto"
+                                    Binding="{Binding Product.ProductType.TypeName}"/>
+
+                <DataGridTextColumn Header="Название товара"
+                                    Width="Auto"
+                                    Binding="{Binding Product.ProductName}"/>
+
+                <DataGridTextColumn Header="Цена за единицу товара"
+                                    Width="Auto"
+                                    Binding="{Binding Product.PricePerUnit}"/>
+
+                <DataGridTextColumn Header="Кол-во товара"
+                                    Width="Auto"
+                                    Binding="{Binding CountProduct}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+       
+    </Grid>
+</Window>

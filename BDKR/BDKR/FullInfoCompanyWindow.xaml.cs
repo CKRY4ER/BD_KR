@@ -44,7 +44,7 @@ namespace BDKR
 
             foreach (StoregeRoom storeg in storegList)
             {
-                if (storeg.CompanyId != room.CompanyId)
+                if (storeg.StorageRoomId != room.StorageRoomId)
                 {
                     room = storeg;
                     storegeRooms.Add(room);

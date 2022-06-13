@@ -1,0 +1,157 @@
+﻿<Window x:Class="BDKR.AddOrrDeletedProductOnSellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BDKR"
+        mc:Ignorable="d"
+        Title="Добавить продукты в продажу" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1"
+             Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Номер склада"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"/>
+
+            <Button Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Content="Добавить товар"
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    x:Name="AddProduct"
+                    Click="AddProduct_Click" Width="289"/>
+
+            <ComboBox DisplayMemberPath="StorageRoomId"
+                      Grid.Column="1"
+                      FontSize="20"
+                      VerticalAlignment="Center"
+                      x:Name="StoregRoomBox"/>
+
+        </Grid>
+
+        <TextBlock Text="Спиок не добавленных товаров"
+                   FontSize="20" 
+                   />
+
+        <DataGrid Grid.Row="1"
+                  x:Name="ProductNotInSellGrid"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  FontSize="20"
+                  VerticalScrollBarVisibility="Visible"
+                  HorizontalScrollBarVisibility="Visible"
+                  MouseDoubleClick="ProductNotInSellGrid_MouseDoubleClick">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул"
+                                    Width="Auto"
+                                    Binding="{Binding ArticleNumber}"/>
+
+                <DataGridTextColumn Header="Бренд продукта"
+                                    Width="Auto"
+                                    Binding="{Binding Brand.BrandName}"/>
+
+                <DataGridTextColumn Header="Тип продукта"
+                                    Width="Auto"
+                                    Binding="{Binding ProductType.TypeName}"/>
+
+                <DataGridTextColumn Header="Название продукта"
+                                    Width="Auto"
+                                    Binding="{Binding ProductName}"/>
+
+                <DataGridTextColumn Header="Цена за единицу"
+                                    Width="Auto"
+                                    Binding="{Binding PricePerUnit}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <TextBlock Grid.Row="2"
+                   FontSize="20"
+                   Text="Спиосок товаров на продажу"/>
+
+        <DataGrid Grid.Row="3"
+                   IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  FontSize="20"
+                  VerticalScrollBarVisibility="Visible"
+                  HorizontalScrollBarVisibility="Visible"
+                  x:Name="ProdOnAddFinal"
+                  MouseDoubleClick ="ProdOnAddFinal_MouseDoubleClick">
+
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Артикул"
+                                    Width="Auto"
+                                    Binding="{Binding ArticleNumber}"/>
+
+            <DataGridTextColumn Header="Бренд продукта"
+                                    Width="Auto"
+                                    Binding="{Binding Brand.BrandName}"/>
+
+            <DataGridTextColumn Header="Тип продукта"
+                                    Width="Auto"
+                                    Binding="{Binding ProductType.TypeName}"/>
+
+            <DataGridTextColumn Header="Название продукта"
+                                    Width="Auto"
+                                    Binding="{Binding ProductName}"/>
+
+            <DataGridTextColumn Header="Цена за единицу"
+                                    Width="Auto"
+                                    Binding="{Binding PricePerUnit}"/>
+        </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Grid Grid.Row="3"
+              Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button FontSize="20"
+                    Content="Удалить продукт"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    x:Name="DeleteProduct"
+                    Click="DeleteProduct_Click" Width="288"/>
+
+            <Button FontSize="20"
+                    Content="Добавить продукты в продажу"
+                    Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    x:Name="AddProductFinal"
+                    Click="AddProductFinal_Click"/>
+        </Grid>
+
+
+    </Grid>
+</Window>

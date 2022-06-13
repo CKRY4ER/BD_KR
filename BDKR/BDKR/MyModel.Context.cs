@@ -32,6 +32,7 @@ namespace BDKR
                 _context = new BDKREntities();
             return _context;
         }
+
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Buyer> Buyer { get; set; }
         public DbSet<Company> Company { get; set; }

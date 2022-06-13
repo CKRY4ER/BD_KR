@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,14 @@ namespace BDKR
             public string CountProduct { get; set; }
         }
 
+        public class DinamicProduct
+        {
+            public string Month { get; set; }
+
+            public int CoutOrder { get; set; }
+
+            public int CountSypply { get; set; }
+        }
         private List<MapperProduct> mapperProducts = new List<MapperProduct>();
 
         public MainWindow()
@@ -61,6 +70,8 @@ namespace BDKR
             InvoiceDataGrid.ItemsSource = BDKREntities.GetContext().Invoice.ToList();
 
             CompanyDataGrid.ItemsSource = BDKREntities.GetContext().Company.ToList();
+
+            ProductArticle.ItemsSource = BDKREntities.GetContext().Product.Where(p => p.ProductId != 7).ToList();
 
             InicializeStoregRoomGrid();
         }
@@ -208,7 +219,7 @@ namespace BDKR
         {
 
             mapperProducts.Clear();
-            var product = BDKREntities.GetContext().Product;
+            var product = BDKREntities.GetContext().Product.Where(p => p.ProductId != 7).ToList();
 
             var storegRoom = BDKREntities.GetContext().StoregeRoom.ToList();
 
@@ -261,6 +272,9 @@ namespace BDKR
 
         private void CompanyDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (CompanyDataGrid.SelectedItem == null)
+                return;
+
             Company company = CompanyDataGrid.SelectedItem as Company;
 
             new FullInfoCompanyWindow(company).Show();
@@ -268,7 +282,9 @@ namespace BDKR
 
         private void StoregRoomDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            StoregeRoom storegeRoom = StoregRoomDataGrid.SelectedItem as StoregeRoom;
 
+            new FullInfoStoregRoomWindow(storegeRoom).Show();
         }
 
         private void AddCompanyBtn_Click(object sender, RoutedEventArgs e)
@@ -285,7 +301,69 @@ namespace BDKR
 
         private void DeleteCompany_Click(object sender, RoutedEventArgs e)
         {
+            if (CompanyDataGrid.SelectedItem == null)
+                return;
 
+            Company company = CompanyDataGrid.SelectedItem as Company;
+
+            var companys = BDKREntities.GetContext().Company.ToList();
+
+            if (companys.Count <=1)
+            {
+                MessageBox.Show("Не возможно удалить последнюю компанию, тк это нарушит целостность данных!");
+                return;
+            }
+
+            var sypplys = BDKREntities.GetContext().Sypply
+                .Where(s=>s.Employee.Post.Company.CompanyId == company.CompanyId)
+                .ToList();
+
+                
+
+            companys = companys.Where(c => c.CompanyId != company.CompanyId).ToList();
+
+            int compId = companys[0].CompanyId;
+            Employee empl = BDKREntities.GetContext().Employee
+                .Where(em => em.Post.Company.CompanyId == compId)
+                .ToList()[0];
+
+            if (sypplys.Count != 0)
+            {
+                foreach (Sypply syp in sypplys)
+                {
+                    syp.EmployeeId = empl.EmployeeId;
+                }
+            }
+
+
+            var deletedEmployee = BDKREntities.GetContext().Employee.Where(emp => emp.Post.Company.CompanyId == company.CompanyId).ToList();
+
+            if (deletedEmployee.Count != 0)
+            {
+                foreach (Employee deleteEmployee in deletedEmployee)
+                {
+                    BDKREntities.GetContext().Employee.Remove(deleteEmployee);
+                }
+            }
+
+            var deletedPost = BDKREntities.GetContext().Post.Where(p=>p.CompanyId==company.CompanyId).ToList();
+
+            foreach(Post delete in deletedPost)
+            {
+                BDKREntities.GetContext().Post.Remove(delete);
+            }
+
+            BDKREntities.GetContext().Company.Remove(company);
+
+            try
+            {
+                BDKREntities.GetContext().SaveChanges();
+                MessageBox.Show("Компания удалена!");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
         }
 
         private void UpdateCompanyGrid_Click(object sender, RoutedEventArgs e)
@@ -296,6 +374,8 @@ namespace BDKR
 
         private void InicializeStoregRoomGrid()
         {
+            StoregRoomDataGrid.ItemsSource = null;
+
             var storegList = BDKREntities.GetContext().StoregeRoom.ToList();
 
             List<StoregeRoom> storegeRooms = new List<StoregeRoom>();
@@ -304,7 +384,7 @@ namespace BDKR
 
             foreach(StoregeRoom storeg in storegList)
             {
-                if (storeg.CompanyId != room.CompanyId)
+                if (storeg.StorageRoomId != room.StorageRoomId)
                 {
                     room = storeg;
                     storegeRooms.Add(room);
@@ -312,6 +392,165 @@ namespace BDKR
             }
 
             StoregRoomDataGrid.ItemsSource = storegeRooms;
+        }
+
+        private void AddStoregRom_Click(object sender, RoutedEventArgs e)
+        {
+            new AddStoregeRoomWindow().Show();
+        }
+
+        private void UpdateTableStoreg_Click(object sender, RoutedEventArgs e)
+        {
+            InicializeStoregRoomGrid();
+        }
+
+        private void AddProductOnSell_Click(object sender, RoutedEventArgs e)
+        {
+            new AddOrrDeletedProductOnSellWindow(null).Show();
+        }
+
+        private void DeleteProductFromSell_Click(object sender, RoutedEventArgs e)
+        {
+            new DeleteProductFromSell().Show();
+        }
+
+        private void DeleteStorage_Click(object sender, RoutedEventArgs e)
+        {
+            StoregeRoom st = StoregRoomDataGrid.SelectedItem as StoregeRoom;
+
+            if (st == null)
+                return;
+
+            var store = BDKREntities.GetContext().StoregeRoom.Where(s=>s.StorageRoomId == st.StorageRoomId).ToList();
+
+            foreach (StoregeRoom s in store)
+            {
+                BDKREntities.GetContext().StoregeRoom.Remove(s);
+            }
+
+            try
+            {
+                BDKREntities.GetContext().SaveChanges();
+                MessageBox.Show("Склад удален!");
+                st = null;
+                InicializeStoregRoomGrid();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void ExecutReporBuyerDate_Click(object sender, RoutedEventArgs e)
+        {
+            if (DateFirst.Text == "")
+            {
+                MessageBox.Show("Не выбрана дата!");
+                return;
+            }
+            DateTime date = DateTime.Parse(DateFirst.Text);
+
+            var orders = BDKREntities.GetContext().OrderBuyer
+                .Where(o => o.DataOfOrder.Month == date.Month)
+                .Where(o => o.DataOfOrder.Year == date.Year)
+                .Where(o => o.DataOfOrder.Day == date.Day)
+                .Where(o=>o.Discount == 10).ToList();
+            
+            List<Buyer> buyers = new List<Buyer>();
+
+            foreach(OrderBuyer order in orders)
+            {
+                Buyer buyer = BDKREntities.GetContext().Buyer.
+                    Where(b => b.BuyerId == order.BuyerId).ToList()[0];
+
+                buyers.Add(buyer);
+            }
+
+            BuyerOnDate.ItemsSource = buyers;
+            CountBuyerOnDate.Text = $"{buyers.Count}";
+        }
+
+        private void ProductArticle_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProductArticle.ItemsSource = null;
+            ProductArticle.ItemsSource = BDKREntities.GetContext().Product.Where(p=>p.ProductId!=7).ToList();
+        }
+
+        private void Execute2_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductArticle.Text == "")
+            {
+                MessageBox.Show("Не выбран продукт!");
+                return;
+            }
+
+            Product prod = BDKREntities.GetContext().Product.Where(p=>p.ArticleNumber == ProductArticle.Text).ToList()[0];
+
+            List<DinamicProduct> dinamicProducts = new List<DinamicProduct>();
+
+            DateTime date = new DateTime();
+
+            for (int i = 1; i <= 12; i++)
+            {
+                var sypplyOnMonth = BDKREntities.GetContext().SypplyPosition.Where(s=>s.Sypply.DateSypply.Month == date.Month)
+                    .Where(s=>s.ProductId == prod.ProductId).ToList();
+
+                int countSypply = 0;
+
+                if (sypplyOnMonth.Count != 0)
+                {
+                    foreach (SypplyPosition sypply in sypplyOnMonth)
+                    {
+                        countSypply += sypply.CountProduct;
+                    }
+                }
+
+                var ordersOnMonth = BDKREntities.GetContext().PositionOrderBuyer.Where(p => p.OrderBuyer.DataOfOrder.Month == date.Month)
+                    .Where(p => p.ProductId == prod.ProductId).ToList();
+
+                int countOrder = 0;
+
+                if (ordersOnMonth.Count != 0)
+                {
+                    foreach(PositionOrderBuyer order in ordersOnMonth)
+                    {
+                        countOrder += order.CountProduct;
+                    }
+                }
+
+                dinamicProducts.Add(new DinamicProduct()
+                {
+                    Month = date.ToString("MMMM", CultureInfo.CurrentCulture),
+                    CountSypply = countSypply,
+                    CoutOrder = countOrder
+                });
+
+                date = date.AddMonths(1);
+            }
+
+            DinamocProduct.ItemsSource = dinamicProducts;
+        }
+
+        private void Execute3_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime dateNow = DateTime.Now;
+
+            DateTime date = dateNow.AddDays(10);
+
+            var buyer = BDKREntities.GetContext().Buyer
+                .ToList();
+
+            List<Buyer> buyers = new List<Buyer>();
+
+            foreach (Buyer bu in buyer)
+            {
+                if (bu.Birthday.Month == dateNow.Month && bu.Birthday.Day >= dateNow.Day && bu.Birthday.Day <= date.Day)
+                {
+                    buyers.Add(bu);
+                }
+            }
+
+            BuyerWithBirthday.ItemsSource = buyers;
         }
     }
 }

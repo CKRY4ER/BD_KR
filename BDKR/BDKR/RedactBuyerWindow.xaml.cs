@@ -26,11 +26,15 @@ namespace BDKR
             DeleteSpace(buyer);
             _buyer = buyer;
             DataContext = _buyer;
+
+            DateOfIssueTb.Text = _buyer.Passport.DateOfIssue.ToString();
+
+            Birthday.Text = _buyer.Birthday.ToString();
         }
 
         private void DeleteSpace(Buyer buyer)
         {
-            buyer.Passport.IssuedByWhom = buyer.Passport.IssuedByWhom.Replace(" ", "");
+            buyer.Passport.IssuedByWhom = buyer.Passport.IssuedByWhom.Trim();
             buyer.Name = buyer.Name.Replace(" ", "");
             buyer.Surname = buyer.Surname.Replace(" ", "");
             buyer.MiddleName = buyer.MiddleName?.Replace(" ", "");
@@ -90,10 +94,14 @@ namespace BDKR
                 }
             }
 
+            _buyer.Passport.DateOfIssue = DateTime.Parse(DateOfIssueTb.Text);
+            _buyer.Birthday = DateTime.Parse(Birthday.Text);
+
             try
             {
                 BDKREntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена!");
+                this.Close();
             }
             catch (Exception exception)
             {

@@ -507,7 +507,7 @@
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 x:Name="AddCompanyBtn"
-                                Click="AddCompanyBtn_Click" Width="241"/>
+                                Click="AddCompanyBtn_Click" Width="269"/>
 
                         <Button Content="Редактировать компанию"
                                 Grid.Row="1"
@@ -515,7 +515,7 @@
                                 HorizontalAlignment="Center"
                                 FontSize="20"
                                 x:Name="RedactCompany"
-                                Click="RedactCompany_Click"/>
+                                Click="RedactCompany_Click" Width="269"/>
 
                         <Button Content="Удалить компанию"
                                 Grid.Row="2"
@@ -523,7 +523,7 @@
                                 HorizontalAlignment="Center"
                                 FontSize="20"
                                 x:Name="DeleteCompany"
-                                Click="DeleteCompany_Click" Width="242"/>
+                                Click="DeleteCompany_Click" Width="269"/>
 
                         <Button Content="Обновить таблицу"
                                 Grid.Row="3"
@@ -531,8 +531,66 @@
                                 HorizontalAlignment="Center"
                                 FontSize="20"
                                 x:Name="UpdateCompanyGrid"
-                                Click="UpdateCompanyGrid_Click" Width="242"/>
+                                Click="UpdateCompanyGrid_Click" Width="269"/>
 
+                    </Grid>
+
+                    <Grid Grid.Row="3"
+                          Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                x:Name="AddStoregRom"
+                                Click="AddStoregRom_Click"
+                                FontSize="20"
+                                Content="Добавить склад"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center" Width="269"/>
+                            <Button x:Name="DeleteStorage"
+                                    Click="DeleteStorage_Click"
+                                    FontSize="20"
+                                    Content="Удалить склад"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="1"
+                                    Width="269"/>
+
+
+                        </Grid>
+
+                        <Button x:Name="DeleteProductFromSell"
+                                Grid.Row="1"
+                                FontSize="20"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Content="Снять товар с продажи"
+                                Click="DeleteProductFromSell_Click"  Width="269"/>
+
+                        <Button x:Name="AddProductOnSell"
+                                Grid.Row="2"
+                                FontSize="20"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Content=" Добавить товар на продажу"
+                                Click="AddProductOnSell_Click"/>
+
+                        <Button Grid.Row="3"
+                                x:Name="UpdateTableStoreg"
+                                FontSize="20"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Content="Обновить таблицу" Width="269"
+                                Click="UpdateTableStoreg_Click"/>
                     </Grid>
 
                 </Grid>
@@ -544,6 +602,243 @@
 
                     </TextBlock>
                 </TabItem.Header>
+
+                <Grid>
+
+                    <TabControl TabStripPlacement="Left">
+                        <TabItem >
+                            <TabItem.Header >
+                                <TextBlock Text="Список покупателей на дату"  FontSize="20">
+
+                                </TextBlock>
+                            </TabItem.Header>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="5*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.2*"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Выберите дату"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
+                                    <DatePicker x:Name="DateFirst"
+                                                Grid.Column="1"
+                                                FontSize="20"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                Width="215"
+                                                />
+                                </Grid>
+
+                                <Button Grid.Row="1"
+                                        Content="Получить отчет"
+                                        FontSize="20"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        x:Name="ExecutReporBuyerDate"
+                                        Click="ExecutReporBuyerDate_Click"/>
+
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.22*"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Кол-во покупателй"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBox x:Name="CountBuyerOnDate"
+                                             Grid.Column="1"
+                                             FontSize="20"
+                                             IsReadOnly="True"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Left"
+                                             Width="200"/>
+                                </Grid>
+
+                                <DataGrid Grid.Row="3"
+                                          FontSize="20"
+                                          x:Name="BuyerOnDate"
+                                          IsReadOnly="True"
+                                          AutoGenerateColumns="False"
+                                          VerticalScrollBarVisibility="Visible"
+                                          HorizontalScrollBarVisibility="Visible">
+                                    
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Фамилия"
+                                                            Width="Auto"
+                                                            Binding="{Binding Surname}"/>
+
+                                        <DataGridTextColumn Header="Имя"
+                                                            Width="Auto"
+                                                            Binding="{Binding Name}"/>
+                                        <DataGridTextColumn Header="Отчество"
+                                                            Width="Auto"
+                                                            Binding="{Binding MiddleName}"/>
+
+                                        <DataGridTextColumn Header="Номер телефона"
+                                                            Width="Auto"
+                                                            Binding="{Binding PhoneNumber}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header >
+                                <TextBlock Text="Динамика продажи товара"  FontSize="20">
+                                </TextBlock>
+                            </TabItem.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.1*"/>
+                                    <RowDefinition Height="0.1*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.2*"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Выберите товар"
+                                               FontSize="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+
+                                    <ComboBox FontSize="20"
+                                              Grid.Column="1"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              Width="200"
+                                              DisplayMemberPath="ArticleNumber"
+                                              x:Name="ProductArticle"
+                                              IsReadOnly="True"
+                                              MouseDoubleClick="ProductArticle_MouseDoubleClick"/>
+                                    
+                                </Grid>
+
+                                <Button Grid.Row="1"
+                                        FontSize="20"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="Получить отчет"
+                                        x:Name="Execute2"
+                                        Click="Execute2_Click"/>
+
+                                <DataGrid Grid.Row="3"
+                                          FontSize="20"
+                                          IsReadOnly="True"
+                                          AutoGenerateColumns="False"
+                                          VerticalScrollBarVisibility="Visible"
+                                          HorizontalScrollBarVisibility="Visible"
+                                          x:Name="DinamocProduct">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Месяц"
+                                                            Width="Auto"
+                                                            Binding="{Binding Month}"/>
+
+                                        <DataGridTextColumn Header="Кол-во проданного товара"
+                                                            Width="Auto"
+                                                            Binding="{Binding CoutOrder}"/>
+
+                                        <DataGridTextColumn Header="Кол-во товара в потсавке"
+                                                            Width="Auto"
+                                                            Binding="{Binding CountSypply}"/>
+                                    </DataGrid.Columns>
+                                    
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem>
+                            <TabItem.Header >
+                                <TextBlock Text="Покупатели со скорым ДР"  FontSize="20">
+
+                                </TextBlock>
+                            </TabItem.Header>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.1*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Button x:Name="Execute3"
+                                        FontSize="20"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Content="Получить отчет" Click="Execute3_Click"/>
+
+                                <DataGrid Grid.Row="1"
+                                          FontSize="20"
+                                          IsReadOnly="True"
+                                          VerticalScrollBarVisibility="Visible"
+                                          HorizontalScrollBarVisibility="Visible"
+                                          AutoGenerateColumns="False"
+                                          x:Name="BuyerWithBirthday">
+
+                                    <DataGrid.Columns>
+
+                                        <DataGridTextColumn Header="Серия паспорта"
+                                                            Binding="{Binding Passport.Serial}"
+                                                            Width="Auto"/>
+
+                                        <DataGridTextColumn Header="Номер паспорта"
+                                                            Width="Auto"
+                                                            Binding="{Binding Passport.Number}"/>
+
+                                        <DataGridTextColumn Header="Дата выдачи паспорта"
+                                                            Binding="{Binding Passport.DateOfIssue}"
+                                                            Width="Auto"/>
+
+                                        <DataGridTextColumn Header="Фамилия"
+                                                            Binding="{Binding Surname}"
+                                                            Width="Auto"/>
+
+                                        <DataGridTextColumn Header="Имя"
+                                                            Width="Auto"
+                                                            Binding="{Binding Name}"/>
+
+                                        <DataGridTextColumn Header="Отчество"
+                                                            Width="Auto"
+                                                            Binding="{Binding MiddleName}"/>
+
+                                        <DataGridTextColumn Header="Дата рождения"
+                                                            Binding="{Binding Birthday}"
+                                                            Width="Auto"/>
+
+                                        <DataGridTextColumn Header="Номер телефона"
+                                                            Width="Auto"
+                                                            Binding="{Binding PhoneNumber}"/>
+
+                                        <DataGridTextColumn Header="Номер карты"
+                                                            Width="Auto"
+                                                            Binding="{Binding CardNumber}"/>
+                                    </DataGrid.Columns>
+                                    
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+                
+                
             </TabItem>
         </TabControl>
     </Grid>

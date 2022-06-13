@@ -48,7 +48,8 @@ namespace BDKR
             foreach (StoregeRoom sr in storegeRooms)
             {
                 int prId = sr.ProductId;
-                var prod = BDKREntities.GetContext().Product.Where(p => p.ProductId == prId).ToList();
+                var prod = BDKREntities.GetContext().Product.Where(p => p.ProductId == prId)
+                    .Where(p => p.ProductId!=7).ToList();
                 pr.Add(prod[0]);
             }
             ProductDataGrid.ItemsSource = pr;

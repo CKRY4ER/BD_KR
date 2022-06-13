@@ -49,7 +49,8 @@ namespace BDKR
             foreach(StoregeRoom sr in storegeRooms)
             {
                 int prId = sr.ProductId;
-                var prod = BDKREntities.GetContext().Product.Where(p=>p.ProductId==prId).ToList();
+                var prod = BDKREntities.GetContext().Product.Where(p=>p.ProductId==prId)
+                    .Where(p=>p.ProductId!=7).ToList();
                 pr.Add(prod[0]);
             }
             ProductDataGrid.ItemsSource = pr;
@@ -182,7 +183,7 @@ namespace BDKR
                 return;
             }
 
-            if (int.Parse(FinalyPrice.Text) > 3000)
+            if (double.Parse(FinalyPrice.Text) > 3000)
             {
                 int buyerid = int.Parse(BuyerComboBox.Text);
                 var buyer = BDKREntities.GetContext().Buyer
